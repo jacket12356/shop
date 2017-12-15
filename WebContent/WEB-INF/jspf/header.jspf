@@ -1,0 +1,201 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Fashion Mania Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- start menu -->
+<link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="js/memenu.js"></script>
+<script>$(document).ready(function(){$(".memenu").memenu();});</script>
+<script src="js/simpleCart.min.js"> </script>
+<!-- slide -->
+<script src="js/responsiveslides.min.js"></script>
+   <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+    
+    function emptyCart(){
+    	$.ajax({
+       		type : 'get',
+       		url : '${pageContext.request.contextPath}/emptycart',
+       		data : 'lala',
+       		//回调函数
+       		success : function(){
+       		}
+       	});
+    }
+
+  </script>
+</head>
+<body>
+<!--header-->
+<div class="header">
+	<div class="header-top">
+		<div class="container">
+		<div class="col-sm-4 world">
+					<ul >
+						<li>
+						<select class="in-drop">
+							  <option>English</option>
+							  <option>Japanese</option>
+							  <option>French</option>
+							</select></li>
+						
+					</ul>
+				</div>
+				<div class="col-sm-4 logo">
+					<a href="index.jsp"><img src="images/logo.png" alt=""></a>	
+				</div>
+		
+			<div class="col-sm-4 header-left">		
+					<p class="log">
+						<c:if test="${user == null }">
+							<a href="account.jsp">Login</a>
+						</c:if>
+						<c:if test="${user != null }">
+							<img src="icons/${user.iconPath}" alt="" width="60px" height="60px"/>
+							<a href="personal">Hello, ${user.name}</a>
+						</c:if>
+					</p>
+					<div class="cart box_1">
+						<a href="checkout">
+						<h3> <div class="total">
+							<span class="simpleCart_total" id="simpleCart_total"></span></div>
+							<img src="images/cart.png" alt=""/></h3>
+						</a>
+						<p><a href="javascript:void(0)" class="simpleCart_empty" onclick="emptyCart()">Empty Cart</a></p>
+
+					</div>
+					<div class="clearfix"> </div>
+			</div>
+				<div class="clearfix"> </div>
+		</div>
+		</div>
+		<div class="container">
+			<div class="head-top">
+				<div class="col-sm-2 number">
+					<span><i class="glyphicon glyphicon-phone"></i>085 596 234</span>
+				</div>
+		 <div class="col-sm-8 h_menu4">
+				<ul class="memenu skyblue">
+					  <li class=" grid"><a  href="index.jsp">Home</a></li>	
+				      <li><a  href="#">Product</a>
+				      	<div class="mepanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>Categories</h4>
+									<ul>
+									<c:forEach items="${typelist}" var="type">
+										<li><a href="productlist?typeid=${type.id }">${type.name}</a></li>
+									</c:forEach>
+										<!-- <li><a href="products.jsp">Shirts</a></li>
+										<li><a href="products.jsp">Sports Wear</a></li>
+										<li><a href="products.jsp">Shorts</a></li>
+										<li><a href="products.jsp">Suits & Blazers</a></li>
+										<li><a href="products.jsp">Formal Shirts</a></li>
+										<li><a href="products.jsp">Sweatpants</a></li>
+										<li><a href="products.jsp">Swimwear</a></li>
+										<li><a href="products.jsp">Trousers & Chinos</a></li>
+										<li><a href="products.jsp">T-Shirts</a></li>
+										<li><a href="products.jsp">Underwear & Socks</a></li> -->
+										
+									</ul>	
+								</div>							
+							</div>
+							<!-- <div class="col1">
+								<div class="h_nav">
+									<h4>Footwear</h4>
+									<ul>
+										<li><a href="products.jsp">Formal Shoes</a></li>
+										<li><a href="products.jsp">Boots</a></li>
+										<li><a href="products.jsp">Sports Shoes</a></li>
+										<li><a href="products.jsp">Casual Shoes</a></li>
+										<li><a href="products.jsp">Running Shoes</a></li>
+										<li><a href="products.jsp">Sneakers</a></li>
+										<li><a href="products.jsp">Loafers</a></li>
+										<li><a href="products.jsp">Slippers</a></li>
+										<li><a href="products.jsp">Sandals</a></li>
+										<li><a href="products.jsp">Flip-flops</a></li>
+									
+									</ul>	
+								</div>							
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>Popular Brands</h4>
+									<ul>
+										<li><a href="products.jsp">Levis</a></li>
+										<li><a href="products.jsp">Persol</a></li>
+										<li><a href="products.jsp">Nike</a></li>
+										<li><a href="products.jsp">Edwin</a></li>
+										<li><a href="products.jsp">New Balance</a></li>
+										<li><a href="products.jsp">Jack & Jones</a></li>
+										<li><a href="products.jsp">Paul Smith</a></li>
+										<li><a href="products.jsp">Ray-Ban</a></li>
+										<li><a href="products.jsp">Wood Wood</a></li>
+									</ul>	
+								</div>												
+							</div> -->
+						  </div>
+						</div>
+					</li>
+				    
+				<li><a  href="personal">Personal</a></li>				
+				<li><a class="color6" href="contact.jsp">Contact</a></li>
+			  </ul> 
+			</div>
+				<div class="col-sm-2 search">		
+			<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
+		</div>
+		<div class="clearfix"> </div>
+			<!---pop-up-box---->
+					  <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
+					<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+					<!---//pop-up-box---->
+				<div id="small-dialog" class="mfp-hide">
+				<div class="search-top">
+						<div class="login">
+						<form action="search" method="get">
+							<input type="submit" value=""/>
+							<input type="text" name="keywords" value="Type something..." onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '';}"/>		
+						</form>
+						</div>
+						<p>	Shopping</p>
+					</div>				
+				</div>
+				 <script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
+																						
+						});
+				</script>			
+	<!---->		
+		</div>
+	</div>
+</div>
